@@ -59,6 +59,7 @@ class Dev(Configuration):
         
         # new applications
         'movies',
+        'gh',
     ]
 
     MIDDLEWARE = [
