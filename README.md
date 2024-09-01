@@ -75,3 +75,12 @@ for movie in movies:
 - Check what data comes back for a list or detail response. Your models may need to keep track if they are a full response or not. This could be just a flag, or a datetime if the model data needs to be refreshed periodically.
 - Consider some protection against users causing repeated API calls for the same data.
 - (This point is not REST API specific:) Having helper functions outside of your view code means you can use the functionality in management commands as well, without having to write duplicate code.
+
+## PyGithub
+
+```bash
+pip3 install PyGithub
+python3 manage.py startapp gh
+```
+
+Generate GiyHub Token https://github.com/settings/tokens/new
