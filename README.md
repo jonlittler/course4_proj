@@ -123,10 +123,12 @@ git clone git@github.com:jonlittler/course4_proj.git
 sudo apt install -y redis
 redis-cli ping              # PONG
 pip3 install celery django-celery-results redis
+pip3 install django-celery-beat
 python3 manage.py migrate
 
-# start celery worker
+# start celery worker / beat (scheduler)
 celery -A course4_proj worker -l DEBUG
+celery -A course4_proj beat -l INFO
 ```
 
 Where:
@@ -179,6 +181,26 @@ https://sodamystery-mercyplace-8000.codio.io/search-wait/6e3139b3-7299-4b6f-bb9f
 
 Search Results\
 https://sodamystery-mercyplace-8000.codio.io/search-results/?search_term=star+wars
+
+### Scheduling with Celery Beat
+
+https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#entries
+
+Celery beat is a scheduler that starts Celery tasks. To use Celery beat, you must run a “beat” process as well as worker process.
+
+```bash
+# download codebase
+git clone git@github.com:jonlittler/course4_proj.git
+
+# install
+pip3 install django-celery-beat
+python3 manage.py migrate
+
+# start celery worker / beat (scheduler)
+celery -A course4_proj worker -l DEBUG
+celery -A course4_proj beat -l INFO
+celery -A course4_proj beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler # read schedule from database.
+```
 
 ### Django Signals
 

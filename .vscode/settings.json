@@ -1,3 +1,15 @@
 {
-  "cSpell.words": ["apikey", "Codio", "imdb", "jonlittler", "nemo", "OMDB", "queryset’s", "startapp", "subclassing", "webserver"]
+  "cSpell.words": [
+    "apikey",
+    "Codio",
+    "imdb",
+    "jonlittler",
+    "nemo",
+    "noqa",
+    "OMDB",
+    "queryset’s",
+    "startapp",
+    "subclassing",
+    "webserver"
+  ]
 }
