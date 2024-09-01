@@ -84,3 +84,98 @@ python3 manage.py startapp gh
 ```
 
 Generate GiyHub Token https://github.com/settings/tokens/new
+
+#### Testing
+
+```bash
+python3 manage.py test books.tests_1
+```
+
+## Module 2
+
+Welcome to Week 2 of the Advanced Django: External APIs and Task Queuing course. These assignments cover working with asynchronous tasks using Celery and Django Signals. The module ends with graded coding exercises.
+
+Learning Objectives
+
+- Explain the benefits of Celery
+- Differentiate between Celery and Redis
+- Register a Celery task
+- Fetch a completed task
+- View task results in the Admin GUI
+- Define a signal and explain its benefits
+- Create a receiver with a method and a decorator
+- Prevent the reception of duplicate signals
+- Create an asynchronous signal
+- Create your own signal
+- Define a task signature
+- Create a periodic task
+- Differentiate between interval, crontab, solar, and clocked schedules
+- Explain how Celery Beat works
+- Schedule tasks that run on an interval or on a specified date/time
+
+### Celery & Redis
+
+```bash
+# download codebase
+git clone git@github.com:jonlittler/course4_proj.git
+
+# install redis / celery
+sudo apt install -y redis
+redis-cli ping              # PONG
+pip3 install celery django-celery-results redis
+python3 manage.py migrate
+
+# start celery worker
+celery -A course4_proj worker -l DEBUG
+```
+
+Where:
+
+- A is the application argument, in this case we want to import it from the course4_proj module.
+  worker is the command to run, which means start a worker instance
+- l sets the log level, we set it to INFO. You could also use DEBUG, WARN, ERROR, etc
+
+It’s a library that is used to run tasks outside of the main web process. At a high level, tasks are put into a queue (the time to write the task to the queue is fast).
+
+The main webserver process can then continue, and return a response to the client. Meanwhile, a broker reads from the queue and passes the task on to worker(s) that process/execute the task and puts the results back into a queue or database.
+
+https://docs.celeryq.dev/en/stable/userguide/configuration.html
+
+### \_\_init\_\_.py
+
+https://docs.python.org/3/reference/import.html#regular-packages
+
+Python defines two types of packages, regular packages and namespace packages. Regular packages are traditional packages as they existed in Python 3.2 and earlier. A regular package is typically implemented as a directory containing an \_\_init\_\_.py file.
+
+When a regular package is imported, this \_\_init**.py file is implicitly executed, and the objects it defines are bound to names in the package’s namespace. The \_\_init**.py file can contain the same Python code that any other module can contain, and Python will add some additional attributes to the module when it is imported.
+
+```python
+# regular way
+value = my_long_running_function("arg1", 2)
+print(value)
+
+# celery way
+res = my_long_running_function.delay("arg1", 2)
+value = res.get()
+print(value)
+
+# async
+from course4_proj.celery import app
+
+res = my_long_running_function.delay("arg1", 2)
+task_id = res.id
+
+res = app.AsyncResult(task_id)  # load the AsyncResult
+value = res.get()               # get the value
+```
+
+> NOTE: redirect doesn't work in Codio BoxURL
+
+Search\
+https://sodamystery-mercyplace-8000.codio.io/search/?search_term=star+wars
+
+Search Wait\
+https://sodamystery-mercyplace-8000.codio.io/search-wait/6e3139b3-7299-4b6f-bb9f-bd1b900ced1f/?search_term=star+wars
+
+Search Results\
+https://sodamystery-mercyplace-8000.codio.io/search-results/?search_term=star+wars
