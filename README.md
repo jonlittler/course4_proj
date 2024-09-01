@@ -206,4 +206,5 @@ Testing using management commands
 
 ```bash
 python3 manage.py movie_search "finding nemo"
+python3 manage.py movie_search "lord of the rings"
 ```
