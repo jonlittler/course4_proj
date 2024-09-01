@@ -179,3 +179,31 @@ https://sodamystery-mercyplace-8000.codio.io/search-wait/6e3139b3-7299-4b6f-bb9f
 
 Search Results\
 https://sodamystery-mercyplace-8000.codio.io/search-results/?search_term=star+wars
+
+### Django Signals
+
+https://docs.djangoproject.com/en/3.2/ref/signals/
+
+```bash
+# download codebase
+git clone git@github.com:jonlittler/course4_proj.git
+```
+
+Django Signals are used to listen to events throughout the lifetime of a Django application executing (whether with a request, using manage.py, or otherwise).
+
+This allows a Django project to easily run code in response to events even in third-party apps and can be easier than trying to get similar results with other techniques, like subclassing.
+
+Most Common:
+
+- `django.db.models.signals.pre_save` / `django.db.models.signals.post_save:` Sent before/after a model’s save() method is called.
+- `django.db.models.signals.pre_delete` / `django.db.models.signals.post_delete`: Sent before/after a model or queryset’s delete() method is called.
+- `django.db.models.signals.m2m_changed`: Sent when a ManyToManyField on a model is changed.
+- `django.core.signals.request_started` / `django.core.signals.request_finished`: Sent before/after a Django request is handled.
+
+> The **`# noqa`** at the end of the import line instructs linters to ignore this line when checking the code format. Without it, we could get an error or warning that the import is not used.
+
+Testing using management commands
+
+```bash
+python3 manage.py movie_search "finding nemo"
+```
