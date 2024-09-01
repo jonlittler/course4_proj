@@ -60,6 +60,7 @@ class Dev(Configuration):
         # new applications
         'movies',
         'gh',
+        'django_celery_results',
     ]
 
     MIDDLEWARE = [
@@ -170,3 +171,8 @@ class Dev(Configuration):
             'level': 'DEBUG',
         },
     }
+
+    # Celery
+    CELERY_RESULT_BACKEND = "django-db"
+    CELERY_BROKER_URL = "redis://localhost:6379/0"
+    
