@@ -230,3 +230,49 @@ Testing using management commands
 python3 manage.py movie_search "finding nemo"
 python3 manage.py movie_search "lord of the rings"
 ```
+
+#### Testing
+
+```bash
+python3 manage.py test books.tests_1
+```
+
+## Module 3
+
+Welcome to Week 3 of the Advanced Django: External APIs and Task Queuing course. These assignments help you to put to use all of the skills you have covered in the specialization. This is part 1 of the capstone project The module ends with graded coding exercises.
+
+### Movie Night
+
+In the last two modules of this course you will be working on a project that brings together many of the things you have learned from Courses 1 to 4. You will be working on the project called Movie Night which aims to make it easier to organize times to watch movies with friends.
+
+First we’ll go through a high-level description of the site’s features, then show some screenshots of it.
+
+- Users can register with their email address and a password.
+- Users can log in with their email address.
+- Users can search for a movie by title.
+- The movie data will be retrieved from OMDb if the term has not been searched in the past 24 hours.
+- Users can create a Movie Night for a movie, at a specific date and time.
+- Once a Movie Night is created, other users can be invited by the creator.
+- Users will receive an invitation email when they’re invited.
+- Users can confirm their attendance or decline the invitation (as well as switch back and forth between these states).
+- The creator of the Movie Night will receive an email when invitees change their attendance status.
+- Half an hour before a Movie Night is due to start, all the confirmed attendees, and the creator, are emailed a notification.
+- All emailing takes place through Celery. Celery Beat is used for scheduling.
+- A REST API is also implemented.
+- Django Configurations and logging are set up to work as a 12-Factor app.
+
+## Upload Capstone to GitHub (private)
+
+```bash
+git init
+git add .
+git commit -m "PAJ"
+git remote add origin git@github.com:jonlittler/capstone1.git
+git push -u -f origin master
+```
+
+### Testing
+
+```bash
+python3 manage.py test tests.tests_1
+```
